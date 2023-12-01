@@ -1,4 +1,5 @@
 import 'package:aplicativo_leitor_de_ebooks/model/livro_list_model.dart';
+import 'package:aplicativo_leitor_de_ebooks/pages/livro.dart';
 import 'package:aplicativo_leitor_de_ebooks/services/livro_service.dart';
 import 'package:flutter/material.dart';
 
@@ -39,78 +40,67 @@ class _LivrosState extends State<Livros> {
             itemCount: snapshot.data!.livros.length,
             itemBuilder: (context, index) {
               return Center(
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Stack(
-                        children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                            ),
-                            onPressed: () {},
-                            child: Image.network(
-                              snapshot.data!.livros[index].coverUrl,
-                              width: 70,
-                            ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Stack(
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
                           ),
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              width: 30,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 1,
-                                  color: Colors.black,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Livro(
+                                  livro: snapshot.data!.livros[index],
                                 ),
-                                color: Colors.red,
-                                // shape: BoxShape.rectangle,
                               ),
+                            );
+                          },
+                          child: Image.network(
+                            snapshot.data!.livros[index].coverUrl,
+                            width: 70,
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 1,
+                                color: Colors.black,
+                              ),
+                              color: Colors.red,
+                              // shape: BoxShape.rectangle,
                             ),
                           ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            snapshot.data!.livros[index].title,
-                            softWrap: true,
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            snapshot.data!.livros[index].author,
-                            softWrap: true,
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          snapshot.data!.livros[index].title,
+                          softWrap: true,
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          snapshot.data!.livros[index].author,
+                          softWrap: true,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    )
+                  ],
                 ),
               );
             },
           );
-          // return ListView.builder(
-          //   itemCount: snapshot.data!.livros.length,
-          //   itemExtent: 100.0,
-          //   itemBuilder: (context, index) {
-          //     return ListTile(
-          //       visualDensity: const VisualDensity(vertical: 4, horizontal: 4),
-          //       leading: Image.network(
-          //         snapshot.data!.livros[index].coverUrl,
-          //       ),
-          //       title: Text(
-          //         snapshot.data!.livros[index].title,
-          //         softWrap: true,
-          //       ),
-          //       subtitle: Text(snapshot.data!.livros[index].author),
-          //       onTap: () {},
-          //     );
-          //   },
-          // );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
