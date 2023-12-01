@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text('Flutter Demo Home Page'),
+          title: const Text('HomePage'),
           bottom: const TabBar(
             labelStyle: TextStyle(fontSize: 22),
             tabs: [
