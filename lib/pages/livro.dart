@@ -19,37 +19,41 @@ class _LivroState extends State<Livro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomePage'),
+        title: const Text('Livro'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Text(widget.livro.id.toString()),
-            Image.network(widget.livro.coverUrl),
-            Text(widget.livro.title, softWrap: true),
-            Text(widget.livro.author),
-            Text(widget.livro.downloadUrl),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => const HomePage(),
-            //       ),
-            //     );
-            //   },
-            //   child: const Text("HomePage"),
-            // ),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text("Download"),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text("Ler"),
-            ),
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Image.network(widget.livro.coverUrl),
+              ),
+              Text(
+                widget.livro.title,
+                softWrap: true,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 22),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  widget.livro.author,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Download"),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Ler"),
+              ),
+            ],
+          ),
         ),
       ),
     );
