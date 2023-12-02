@@ -13,7 +13,7 @@ class Livros extends StatefulWidget {
 }
 
 class _LivrosState extends State<Livros> {
-  late Future<LivroListModel2> futureAlbum;
+  late Future<LivroListModel> futureAlbum;
 
   @override
   void initState() {
@@ -23,7 +23,7 @@ class _LivrosState extends State<Livros> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<LivroListModel2>(
+    return FutureBuilder<LivroListModel>(
       future: futureAlbum,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
