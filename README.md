@@ -3,6 +3,7 @@
 ## Instruções
 
 - Apertar a telcla F5 ou rodar no terminal o comando "flutter run" para rodar a aplicaçao
+
 - O apk esta em "flutter-apk\app-release.apk"
 
 ## Tecnologias
