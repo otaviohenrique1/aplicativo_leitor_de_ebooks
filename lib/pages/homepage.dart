@@ -16,7 +16,6 @@ class _HomePageState extends State<HomePage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text('HomePage'),
           bottom: const TabBar(
             labelStyle: TextStyle(fontSize: 22),
