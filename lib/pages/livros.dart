@@ -75,7 +75,7 @@ class _LivrosState extends State<Livros> {
                                 width: 1,
                                 color: Colors.black,
                               ),
-                              color: Colors.red,
+                              color: Colors.white,
                               // shape: BoxShape.rectangle,
                             ),
                           ),
