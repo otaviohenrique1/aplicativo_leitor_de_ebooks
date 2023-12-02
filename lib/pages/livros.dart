@@ -69,14 +69,17 @@ class _LivrosState extends State<Livros> {
                           right: 0,
                           child: Container(
                             width: 30,
-                            height: 30,
+                            height: 40,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 width: 1,
                                 color: Colors.black,
                               ),
                               color: Colors.white,
-                              // shape: BoxShape.rectangle,
+                            ),
+                            child: TextButton(
+                              child: const Text(""),
+                              onPressed: () {},
                             ),
                           ),
                         ),
@@ -88,6 +91,7 @@ class _LivrosState extends State<Livros> {
                           snapshot.data!.livros[index].title,
                           softWrap: true,
                           textAlign: TextAlign.center,
+                          style: const TextStyle(fontSize: 16),
                         ),
                         Text(
                           snapshot.data!.livros[index].author,
