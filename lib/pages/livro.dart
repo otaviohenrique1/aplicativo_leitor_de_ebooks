@@ -1,4 +1,5 @@
 import 'package:aplicativo_leitor_de_ebooks/model/livro_model.dart';
+import 'package:aplicativo_leitor_de_ebooks/pages/homepage.dart';
 // import 'package:aplicativo_leitor_de_ebooks/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -101,7 +102,7 @@ class _LivroState extends State<Livro> {
                       ),
                       ElevatedButton(
                         onPressed: () async {
-                          print("=====filePath======$filePath");
+                          // print("=====filePath======$filePath");
                           if (filePath == "") {
                             download();
                           } else {
@@ -117,51 +118,38 @@ class _LivroState extends State<Livro> {
 
                             // get current locator
                             VocsyEpub.locatorStream.listen((locator) {
-                              print('LOCATOR: $locator');
+                              // print('LOCATOR: $locator');
                             });
 
                             VocsyEpub.open(
                               filePath,
                               lastLocation: EpubLocator.fromJson({
-                                "bookId": "2239",
-                                "href": "/OEBPS/ch06.xhtml",
+                                "bookId": "${widget.livro.id}",
+                                // "bookId": "2239",
+                                "href": "/OEBPS/${widget.livro.title}.xhtml",
+                                // "href": "/OEBPS/ch06.xhtml",
                                 "created": 1539934158390,
                                 "locations": {
-                                  "cfi": "epubcfi(/0!/4/4[simple_book]/2/2/6)"
+                                  "cfi":
+                                      "epubcfi(/0!/4/4[${widget.livro.title}]/2/2/6)"
+                                  // "cfi": "epubcfi(/0!/4/4[simple_book]/2/2/6)"
                                 }
                               }),
                             );
                           }
                         },
-                        child: Text('Open Online E-pub'),
+                        child: const Text('Abrir'),
                       ),
                       ElevatedButton(
-                        onPressed: () async {
-                          VocsyEpub.setConfig(
-                            themeColor: Theme.of(context).primaryColor,
-                            identifier: "iosBook",
-                            scrollDirection: EpubScrollDirection.ALLDIRECTIONS,
-                            allowSharing: true,
-                            enableTts: true,
-                            nightMode: true,
-                          );
-                          // get current locator
-                          VocsyEpub.locatorStream.listen((locator) {
-                            print('LOCATOR: $locator');
-                          });
-                          await VocsyEpub.openAsset(
-                            'assets/4.epub',
-                            lastLocation: EpubLocator.fromJson({
-                              "bookId": "2239",
-                              "href": "/OEBPS/ch06.xhtml",
-                              "created": 1539934158390,
-                              "locations": {
-                                "cfi": "epubcfi(/0!/4/4[simple_book]/2/2/6)"
-                              }
-                            }),
+                        onPressed: () {
+                          Navigator.pop(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomePage(),
+                            ),
                           );
                         },
-                        child: Text('Open Assets E-pub'),
+                        child: const Text("Voltar ao inicio"),
                       ),
                     ],
                   ),
@@ -176,7 +164,8 @@ class _LivroState extends State<Livro> {
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();
 
-    String path = '${appDocDir!.path}/sample.epub';
+    String path = '${appDocDir!.path}/${widget.livro.title}.epub';
+    // String path = '${appDocDir!.path}/sample.epub';
     File file = File(path);
 
     if (!File(path).existsSync()) {
