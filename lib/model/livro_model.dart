@@ -12,24 +12,4 @@ class LivroModel {
     required this.coverUrl,
     required this.downloadUrl,
   });
-
-  factory LivroModel.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-        'id': int id,
-        'title': String title,
-        'author': String author,
-        'coverUrl': String coverUrl,
-        'downloadUrl': String downloadUrl
-      } =>
-        LivroModel(
-          id: id,
-          title: title,
-          author: author,
-          coverUrl: coverUrl,
-          downloadUrl: downloadUrl,
-        ),
-      _ => throw const FormatException('Falha ao carregar o livro.'),
-    };
-  }
 }
